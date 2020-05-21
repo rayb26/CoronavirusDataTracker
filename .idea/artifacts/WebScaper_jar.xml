@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="WebScaper:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/WebScaper_jar</output-path>
+    <root id="archive" name="WebScaper.jar">
+      <element id="module-output" name="Coronavirus_Data_Tracker" />
+      <element id="extracted-dir" path="C:/Personal/jsoup-1.13.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/jexcelapi/jxl.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/POI/commons-codec-1.13.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/POI/commons-collections4-4.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/POI/commons-math3-3.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/POI/poi-4.1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/POI/poi-scratchpad-4.1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/POI/SparseBitSet-1.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
