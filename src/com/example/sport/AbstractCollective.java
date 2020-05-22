@@ -3,7 +3,7 @@ package com.example.sport;
 //abstract class so class can be subclassed
 public abstract class AbstractCollective {
     public enum States{
-        //parameter is "real name" of state, which can be fixed onto the url of Worldometer.com. This parameter is not case sensitive
+        //parameter is "real name" of state, which can be fixed onto the url of Worldometer.info. This parameter is not case sensitive
         //All 50 states are included. Some states are not supported by Worldometer.info, but a 404 error validation exists in each regular class
         Alabama("Alabama"),Alaska("Alaska"),Arizona("Arizona"),Arkansas("Arkansas"),California("California"),Colorado("Colorado"),Connecticut("Connecticut"),
         Delaware("Delaware"),Florida("Florida"),Georgia("Georgia"),Hawaii("Hawaii"),Idaho("Idaho"),Illinois("Illinois"), Indiana("Indiana"),Iowa("Iowa"),Kansas("Kansas"),Kentucky("Kentucky"),Louisiana("Louisiana"),Maine("Maine"),
@@ -22,7 +22,7 @@ public abstract class AbstractCollective {
         private final String realName;
     }
     public enum Countries {
-        //parameter is "real name" of country, which can be fixed onto the url of Worldometer.com. This parameter is not case sensitive
+        //parameter is "real name" of country, which can be fixed onto the url of Worldometer.info. This parameter is not case sensitive
         //All countries are supported, but a 404 error validation exists in each regular class
         USA("US"),UnitedStatesOfAmerica("US"),UnitedStates("US"), US("US"), America("US"),Spain("Spain"),Italy("Italy"),UK("UK"),Russia("Russia"),
         France("France"),Germany("Germany"),Brazil("Brazil"),Turkey("Turkey"),Iran("Iran"),
