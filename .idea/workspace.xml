@@ -7,24 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb1966a9-e30a-4792-b169-0727c0334725" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/WebScaper_jar/WebScaper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/WebScaper_jar/WebScaper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/AbstractCollective$Countries.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/AbstractCollective$Countries.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/AbstractCollective$States.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/AbstractCollective$States.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/AbstractCollective.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/AbstractCollective.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/Cases.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/Deaths.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/Recovered.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/TestClass$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/TestClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/ThreeAtOnce.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/ThreeAtOnce.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/ThreeAtOnceCountry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/ThreeAtOnceCountry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/ThreeAtOnceState.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Coronavirus_Data_Tracker/com/example/sport/ThreeAtOnceState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/sport/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/sport/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/sport/ThreeAtOnce.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/sport/ThreeAtOnce.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/sport/ThreeAtOnceCountry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/sport/ThreeAtOnceCountry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/example/sport/ThreeAtOnceState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/sport/ThreeAtOnceState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +113,26 @@
       <option name="presentableId" value="Default" />
       <updated>1587775881007</updated>
     </task>
+    <task id="LOCAL-00001" summary="Updated Code with Comments and Finalized Code for Github release">
+      <created>1590113658123</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1590113658124</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Updated Code with Comments and Finalized Code for Github release">
+      <created>1590113698353</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590113698353</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated Code with Comments and Finalized Code for Github release" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Code with Comments and Finalized Code for Github release" />
   </component>
   <component name="WindowStateProjectService">
     <state x="500" y="169" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1589679490820">
@@ -149,10 +151,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="198" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1588297105711" />
-    <state x="402" y="9" key="CommitChangelistDialog2" timestamp="1590113656510">
+    <state x="402" y="9" key="CommitChangelistDialog2" timestamp="1590113697385">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="402" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590113656510" />
+    <state x="402" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590113697385" />
     <state x="225" y="155" key="FileChooserDialogImpl" timestamp="1588013277327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -197,6 +199,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="371" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1589490749415" />
+    <state x="362" y="147" key="Vcs.Push.Dialog.v2" timestamp="1590113700635">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="362" y="147" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590113700635" />
     <state x="325" y="283" key="classpath-attribute-editor" timestamp="1588013047361">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

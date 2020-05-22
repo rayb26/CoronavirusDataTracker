@@ -34,7 +34,7 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
     public ThreeAtOnceState(int choiceValueActual, String states) {
         this.orgininalStateValue = states;
-        this.stateValue = states.replaceAll("\\s", "").toLowerCase(); //Converting user value to possibly match one of the enums at AbstractCollectiva.class
+        this.stateValue = states.replaceAll("\\s", "").toLowerCase();
         this.choice = choiceValueActual;
         this.checkedStateMatch = checkIfStateExists(stateValue);
 
