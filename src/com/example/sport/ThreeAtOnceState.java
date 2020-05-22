@@ -11,13 +11,8 @@ import org.jsoup.select.Elements;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class ThreeAtOnceState extends AbstractCollective implements Runnable {
     List<String> recovered = new ArrayList<>();
@@ -29,16 +24,11 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
     List<String> DeathsListValue = new ArrayList<>();
     List<String> DeathsListConsole = new ArrayList<>();
     List<Timestamp> timeStampDeath = new ArrayList<>();
-    private static final int classsId = 2;
     public final String stateValue;
     public final String checkedStateMatch;
     static int choice;
     public final String orgininalStateValue;
     public final String locationNotSupportedString = "Location Not Supported";
-
-    public static int getClasssId() {
-        return classsId;
-    }
 
 
 
@@ -52,10 +42,10 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
     @Override
     public void run() {
-        extractCases();
+        extractData();
     }
 
-    public void extractCases() {
+    public void extractData() {
 
         try {
             if (choice > 0) {
@@ -83,13 +73,12 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
                             i++;
 
 
-                            if (i == 3) { //4th span value = Cases Data
+                            if (i == 3) {
                                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
 
                                 String RecoveredtoWrite = timestamp + " -> " + values.getElementsByTag("span").first().text();
-
-                                String casesValueOf = values.getElementsByTag("span").first().text();
+                                //synchronized not needed, but added as a thread-safe precaution
                                 synchronized (this) {
                                     System.out.println(RecoveredtoWrite + " patients recovered");
 
@@ -106,33 +95,27 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
                                     }
 
                                     try {
-                                        //File name of excel class to write data to
+                                        //You can change file name to your needs
+                                        //This file name is where the excel document is stored
                                         String fileName = "C:" + File.separator + "Users" + File.separator + "sport" + File.separator + "Desktop" + File.separator + "WebScraperData" + File.separator + "excel_documents" + File.separator + "Srecovered.xls";
                                         WritableWorkbook workbookRecovered = Workbook.createWorkbook(new File(fileName));
-                                        WritableSheet sheet = workbookRecovered.createSheet("Deaths Data", 1);
-                                        //   sheet.setName("Deaths data");
+                                        WritableSheet sheet = workbookRecovered.createSheet("Recovered Data", 1);
 
                                         Label stateValueLabel = new Label(2, 0, orgininalStateValue);
-                                        //Label timeStampLabel = new Label(0, 2, "TimeStamp");
-                                      //  Label recoveredLabel = new Label(1, 2, "Recovered");
+                                        Label timeStampLabel = new Label(0, 0, "TimeStamp");
+                                        Label recoveredLabelText = new Label(1, 0, "Recovered");
                                         sheet.addCell(stateValueLabel);
-                                    //    sheet.addCell(timeStampLabel);
-                                      //  sheet.addCell(recoveredLabel);
+                                        sheet.addCell(timeStampLabel);
+                                        sheet.addCell(recoveredLabelText);
 
-
-                                        boolean isActive = true;
-
-
-                                        String cases = values.getElementsByTag("span").first().text();
 
                                         int recoveredColumn = 1;
-                                        int recoveredRow = -1;
+                                        int recoveredRow = 0;
 
 
 
 
                                         for (String recoveredValueEach : recoveredList) {
-                                            //Getting each value from recovered data
                                             recoveredRow++;
                                            Label recoveredLabel = new Label(recoveredColumn, recoveredRow, recoveredValueEach);
                                             sheet.addCell(recoveredLabel);
@@ -140,7 +123,7 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
                                         }
                                         int timeStampColumnR = 0;
-                                        int timeStampRowR = -1;
+                                        int timeStampRowR = 0;
                                         Label timeStampLabels;
                                         for (Timestamp timestampValues : timestampList) {
                                             String timeStampValueOf = timestampValues.toString();
@@ -156,23 +139,23 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
 
                                     } catch (NumberFormatException e) {
-                                        System.out.println("Number format error");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                         reOccur = false;
                                         break;
                                     } catch (RowsExceededException e) {
-                                        System.out.println("Rows Exceeded Error");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                         reOccur = false;
                                         break;
                                     } catch (WriteException e) {
-                                        System.out.println("Write Exception");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                         reOccur = false;
                                         break;
                                     }
                                 } catch (IOException e) {
-                                    System.out.println("Output Error");
+                                    System.out.println("Error");
                                     e.printStackTrace();
                                 } finally {
                                     try {
@@ -191,7 +174,10 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
                                 String casesToWrite = timestampC + " -> " + values.getElementsByTag("span").first().text();
 
-                                System.out.println(casesToWrite + " cases");
+                                //synchronized not needed, but added as a thread-safe precaution
+                               synchronized (this){
+                                   System.out.println(casesToWrite + " cases");
+                               }
 
                                 caseListConsole.add(casesToWrite);
                                 timestampListCase.add(timestampC);
@@ -206,27 +192,24 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
 
                                     try {
+                                        //You can change file name to your needs
+                                        //This file name is where the excel document is stored
                                         String fileName = "C:" + File.separator + "Users" + File.separator + "sport" + File.separator + "Desktop" + File.separator + "WebScraperData" + File.separator + "excel_documents" + File.separator + "Scases.xls";
 
                                         WritableWorkbook workbookC = Workbook.createWorkbook(new File(fileName));
                                         WritableSheet sheetC = workbookC.createSheet("Cases Data", 1);
 
                                         Label stateValueLabel = new Label(2, 0, orgininalStateValue);
-                                      //  Label timeStampLabel = new Label(0, 2, "TimeStamp");
-                                    //    Label casesLabel = new Label(1, 2, "Cases");
-                                       // sheetC.addCell(timeStampLabel);
+                                        Label timeStampLabelText = new Label(0, 0, "TimeStamp");
+                                        Label casesLabelText = new Label(1, 0, "Cases");
+                                        sheetC.addCell(timeStampLabelText);
                                         sheetC.addCell(stateValueLabel);
-
-                                        //sheetC.addCell(casesLabel);
-
-
-                                        boolean isActive = true;
+                                        sheetC.addCell(casesLabelText);
 
 
-                                        String cases = values.getElementsByTag("span").first().text();
 
                                         int casesColumn = 1;
-                                        int caseRow = -1;
+                                        int caseRow = 0;
 
                                         for (String casesValuesEach : caseListValue) {
                                             caseRow++;
@@ -236,7 +219,7 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
                                         }
                                         int timeStampColumn = 0;
-                                        int timeStampRow = -1;
+                                        int timeStampRow = 0;
                                         Label timeStampLabels;
                                         for (Timestamp timestampValues : timestampListCase) {
                                             String timeStampValueOf = timestampValues.toString();
@@ -251,23 +234,23 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
 
                                     } catch (IOException e) {
-                                        System.out.println("IO Error");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                         reOccur = false;
                                         break;
 
                                     } catch (NumberFormatException e) {
-                                        System.out.println("Number format error");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                         reOccur = false;
                                         break;
                                     } catch (RowsExceededException e) {
-                                        System.out.println("Rows Exceeded Error");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                         reOccur = false;
                                         break;
                                     } catch (WriteException e) {
-                                        System.out.println("Write Exception");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                         reOccur = false;
                                         break;
@@ -280,7 +263,7 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
                                             pathFile.close();
                                         }
                                     } catch (IOException e) {
-                                        System.out.println("IO Error");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                     }
 
@@ -291,9 +274,11 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
                                 String DeathsToWrite = timestamp + " -> " + values.getElementsByTag("span").first().text();
 
-                                System.out.println(DeathsToWrite + " deaths");
+                                //synchronized not needed, but added as a thread-safe precaution
+                                synchronized (this){
+                                    System.out.println(DeathsToWrite + " deaths");
 
-
+                                }
                                 DeathsListConsole.add(DeathsToWrite);
                                 timeStampDeath.add(timestamp);
                                 DeathsListValue.add(values.getElementsByTag("span").first().text());
@@ -306,26 +291,22 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
                                     }
 
                                     try {
+                                        //You can change file name to your needs
+                                        //This file name is where the excel document is stored
                                         String fileName = "C:" + File.separator + "Users" + File.separator + "sport" + File.separator + "Desktop" + File.separator + "WebScraperData" + File.separator + "excel_documents" + File.separator + "Sdeaths.xls";
                                         WritableWorkbook workbookD = Workbook.createWorkbook(new File(fileName));
                                         WritableSheet sheetD = workbookD.createSheet("Deaths Data", 1);
-                                        //   sheet.setName("Deaths data");
 
                                         Label stateValueLabel = new Label(2, 0, orgininalStateValue);
-                                      //  Label timeStampLabel = new Label(0, 2, "TimeStamp");
-                                       // Label deathsLabel = new Label(1, 2, "Deaths");
-                                     //   sheetD.addCell(timeStampLabel);
-                                      //  sheetD.addCell(deathsLabel);
+                                        Label timeStampLabelText = new Label(0, 0, "TimeStamp");
+                                        Label deathsLabelText = new Label(1, 0, "Deaths");
+                                        sheetD.addCell(timeStampLabelText);
+                                        sheetD.addCell(deathsLabelText);
                                         sheetD.addCell(stateValueLabel);
 
 
-                                        boolean isActive = true;
-
-
-                                        String cases = values.getElementsByTag("span").first().text();
-
                                         int casesColumnD = 1;
-                                        int caseRowD = -1;
+                                        int caseRowD = 0;
                                         Label DeathsLabelReal;
 
                                         for (String deathsListEach : DeathsListValue) {
@@ -335,7 +316,7 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
                                         }
                                         int timeStampColumnD = 0;
-                                        int timeStampRowD = -1;
+                                        int timeStampRowD = 0;
                                         Label timeStampLabelD;
                                         for (Timestamp timestampValues : timeStampDeath) {
                                             String timeStampValueOf = timestampValues.toString();
@@ -351,29 +332,29 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
 
                                     } catch (IOException e) {
-                                        System.out.println("IO Error");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                         reOccur = false;
                                         break;
 
                                     } catch (NumberFormatException e) {
-                                        System.out.println("Number format Error");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                         reOccur = false;
                                         break;
                                     } catch (RowsExceededException e) {
-                                        System.out.println("Rows Exceeded Error");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                         reOccur = false;
                                         break;
                                     } catch (WriteException e) {
-                                        System.out.println("Write Exception");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                         reOccur = false;
                                         break;
                                     }
                                 } catch (IOException e) {
-                                    System.out.println("IO Error");
+                                    System.out.println("Error");
                                     e.printStackTrace();
                                 } finally {
                                     try {
@@ -381,7 +362,7 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
                                             pathFile.close();
                                         }
                                     } catch (IOException e) {
-                                        System.out.println("IO Error");
+                                        System.out.println("Error");
                                         e.printStackTrace();
                                     }
 
@@ -393,8 +374,8 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
                         }
                         try {
-                            long chosenTime = 86400000 / choice;
-                            Thread.sleep(chosenTime); //28,800
+                            long chosenTime = 86400000 / choice; //milliseconds in a day divided by how many times a day the client wants to receive the data
+                            Thread.sleep(chosenTime);
                         } catch (InterruptedException e) {
                             System.out.println("Error");
                             e.printStackTrace();
@@ -403,12 +384,12 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
                         }
 
                     } catch (IOException e) {
-                        System.out.println("IO Exception");
+                        System.out.println("Error");
                         System.out.println("Error");
                         reOccur = false;
                         break;
                     } catch (NumberFormatException e) {
-                        System.out.println("Number Format Exception");
+                        System.out.println("Error");
                         reOccur = false;
                         break;
                     }

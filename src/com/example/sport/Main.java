@@ -1,8 +1,7 @@
 package com.example.sport;
 
 import java.util.Scanner;
-import java.util.concurrent.*;
-import java.util.concurrent.locks.Lock;
+
 import java.util.concurrent.locks.ReentrantLock;
 
 
@@ -15,7 +14,6 @@ Code Written By: Rayhan B.
 public class Main extends AbstractCollective {
     private static Scanner scanner = new Scanner(System.in);
     static ReentrantLock lock = new ReentrantLock();
-    private static final int classsId = 0;    //Identification purposes; not implemented yet
     private static Scanner stateScanner = new Scanner(System.in);
     private static Scanner countryScanner = new Scanner(System.in);
 
@@ -69,9 +67,7 @@ public class Main extends AbstractCollective {
                 break;
         }
     }
-    public static int getClasssId() {
-        return classsId;
-    }
+
     public static void printList() {
         System.out.println("Press 0 if you want to get data for a state in the USA");
         System.out.println("Press 1 if you want to get worldwide data");
