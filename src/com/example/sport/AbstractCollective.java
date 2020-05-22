@@ -4,7 +4,7 @@ package com.example.sport;
 public abstract class AbstractCollective {
     public enum States{
         //parameter is "real name" of state, which can be fixed onto the url of Worldometer.com. This parameter is not case sensitive
-        //All 50 states are included. Some states are not supported by Worldometer.com, but a 404 error validation exists in each regular class
+        //All 50 states are included. Some states are not supported by Worldometer.info, but a 404 error validation exists in each regular class
         Alabama("Alabama"),Alaska("Alaska"),Arizona("Arizona"),Arkansas("Arkansas"),California("California"),Colorado("Colorado"),Connecticut("Connecticut"),
         Delaware("Delaware"),Florida("Florida"),Georgia("Georgia"),Hawaii("Hawaii"),Idaho("Idaho"),Illinois("Illinois"), Indiana("Indiana"),Iowa("Iowa"),Kansas("Kansas"),Kentucky("Kentucky"),Louisiana("Louisiana"),Maine("Maine"),
         Maryland("Maryland"),Massachusetts("Massachusetts"),Michigan("Michigan"),Minnesota("Minnesota"),Mississippi("Mississippi"),Missouri("Missouri"),Montana("Montana"),Nebraska("Nebraska"),Nevada("Nevada"),NewHampshire("new-hampshire"),NewJersey("new-jersey"),
