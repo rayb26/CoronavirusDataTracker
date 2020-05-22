@@ -406,9 +406,9 @@ public class ThreeAtOnceCountry extends AbstractCollective implements Runnable {
     public String checkIfStateExists(String country) {
         for (Countries countries : Countries.values()) {
             if (country.equals(countries.toString().toLowerCase())) {
-                String stateMatch = countries.getRealName();
+                String countryMatch = countries.getRealName();
 
-                return stateMatch;
+                return countryMatch;
             }
         }
         return "Location Not Supported";

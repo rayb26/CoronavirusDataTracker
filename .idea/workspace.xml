@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fb1966a9-e30a-4792-b169-0727c0334725" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/example/sport/ThreeAtOnceState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/example/sport/ThreeAtOnceState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590113698353</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Updated Code with Comments and Finalized Code for Github release">
+      <created>1590113866163</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1590113866163</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -151,10 +157,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="198" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1588297105711" />
-    <state x="402" y="9" key="CommitChangelistDialog2" timestamp="1590113697385">
+    <state x="402" y="9" key="CommitChangelistDialog2" timestamp="1590113865313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="402" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590113697385" />
+    <state x="402" y="9" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590113865313" />
     <state x="225" y="155" key="FileChooserDialogImpl" timestamp="1588013277327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -199,10 +205,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="371" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1589490749415" />
-    <state x="362" y="147" key="Vcs.Push.Dialog.v2" timestamp="1590113700635">
+    <state x="362" y="147" key="Vcs.Push.Dialog.v2" timestamp="1590113870970">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="362" y="147" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590113700635" />
+    <state x="362" y="147" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590113870970" />
     <state x="325" y="283" key="classpath-attribute-editor" timestamp="1588013047361">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
