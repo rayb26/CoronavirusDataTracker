@@ -29,6 +29,7 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
     static int choice;
     public final String orgininalStateValue;
     public final String locationNotSupportedString = "Location Not Supported";
+    DataBaseStore dataBaseStore = new DataBaseStore();
 
 
 
@@ -78,11 +79,16 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
 
 
                                 String RecoveredtoWrite = timestamp + " -> " + values.getElementsByTag("span").first().text();
+                                String recoveredData = values.getElementsByTag("span").first().text();
+
                                 //synchronized not needed, but added as a thread-safe precaution
                                 synchronized (this) {
                                     System.out.println(RecoveredtoWrite + " patients recovered");
 
                                 }
+                                dataBaseStore.createStateTable(DataBaseStore.CREATE_TABLE_STATE_RECOVERED);
+                                dataBaseStore.insertIntoStateData(timestamp.toString(), recoveredData, DataBaseStore.TABLE_STATE_RECOVERED);
+
                                 recovered.add(RecoveredtoWrite);
                                 timestampList.add(timestamp);
                                 recoveredList.add(values.getElementsByTag("span").first().text());
@@ -173,11 +179,14 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
                                 Timestamp timestampC = new Timestamp(System.currentTimeMillis());
 
                                 String casesToWrite = timestampC + " -> " + values.getElementsByTag("span").first().text();
+                                String caseData = values.getElementsByTag("span").first().text();
 
                                 //synchronized not needed, but added as a thread-safe precaution
                                synchronized (this){
                                    System.out.println(casesToWrite + " cases");
                                }
+                               dataBaseStore.createStateTable(DataBaseStore.CREATE_TABLE_STATE_CASES);
+                               dataBaseStore.insertIntoStateData(timestampC.toString(), caseData, DataBaseStore.TABLE_STATE_CASES);
 
                                 caseListConsole.add(casesToWrite);
                                 timestampListCase.add(timestampC);
@@ -273,12 +282,15 @@ public class ThreeAtOnceState extends AbstractCollective implements Runnable {
                                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
                                 String DeathsToWrite = timestamp + " -> " + values.getElementsByTag("span").first().text();
+                                String deathsValue = values.getElementsByTag("span").first().text();
 
                                 //synchronized not needed, but added as a thread-safe precaution
                                 synchronized (this){
                                     System.out.println(DeathsToWrite + " deaths");
 
                                 }
+                                dataBaseStore.createStateTable(DataBaseStore.CREATE_TABLE_STATE_DEATHS);
+                                dataBaseStore.insertIntoStateData(timestamp.toString(), deathsValue, DataBaseStore.TABLE_STATE_DEATHS);
                                 DeathsListConsole.add(DeathsToWrite);
                                 timeStampDeath.add(timestamp);
                                 DeathsListValue.add(values.getElementsByTag("span").first().text());

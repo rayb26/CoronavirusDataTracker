@@ -6,8 +6,10 @@ import java.sql.*;
 public class DataBaseStore {
 
 
+    //Insert your own database name into the subsequent String
     public static final String DB_NAME = "Coronavirus_Data.db";
 
+    //Insert your own connection statement into the connection string
     public static final String CONNECTION_STRING = "jdbc:sqlite:C:\\Users\\sport\\Desktop\\Coronavirus_Database\\" + DB_NAME;
 
     public static final String TABLE_CASES = "CASES";
@@ -42,13 +44,9 @@ public class DataBaseStore {
     public static final String COLUMN_STATE_DTIMESTAMP = "Timestamp";
     public static final String COLUMN_STATE_DDEATHS = "Deaths";
 
-
     public static final String TABLE_STATE_RECOVERED = "State_Recovered";
     public static final String COLUMN_STATE_RTIMESTAMP = "Timestamp";
     public static final String COLUMN_STATE_RRECOVERED = "Recovered";
-
-
-
 
     public static final String CREATE_TABLE_CASES = "CREATE TABLE IF NOT EXISTS " + TABLE_CASES + " (" + COLUMN_CTIMESTAMP + " TEXT, " + COLUMN_CASES + " TEXT);";
     public static final String CREATE_TABLE_DEATHS = "CREATE TABLE IF NOT EXISTS " + TABLE_DEATHS + " (" + COLUMN_DTIMESTAMP + " TEXT, " + COLUMN_DEATHS + " TEXT)";
@@ -86,15 +84,13 @@ public class DataBaseStore {
             System.out.println("Couldn't close connection: " + e.getMessage());
         }
     }
-
-    public void createTableCases() {
+    //World Database Configuration Code Below
+    public void createWorldTable(String tableDataType) {
 
         if (open()) {
             try (Statement statement = connection.createStatement()) {
 
-                statement.executeUpdate(CREATE_TABLE_CASES);
-
-
+                statement.executeUpdate(tableDataType);
             } catch (SQLException e) {
                 System.out.println("Error TABLE Not created ");
                 System.out.println(e.getMessage());
@@ -106,52 +102,13 @@ public class DataBaseStore {
             System.out.println("error creating table");
         }
 
-
     }
-
-    public void createTableDeaths() {
-        if (open()) {
-            try (Statement statement = connection.createStatement()) {
-
-                statement.executeUpdate(CREATE_TABLE_DEATHS);
-
-
-            } catch (SQLException e) {
-                System.out.println("Error TABLE Not created ");
-                System.out.println(e.getMessage());
-
-
-            }
-            close();
-        } else {
-            System.out.println("error creating table");
-        }
-    }
-
-    public void createTableRecovered() {
-        if (open()) {
-            try (Statement statement = connection.createStatement()) {
-
-                statement.executeUpdate(CREATE_TABLE_RECOVERED);
-
-            } catch (SQLException e) {
-                System.out.println("Error TABLE Not created ");
-                System.out.println(e.getMessage());
-
-
-            }
-            close();
-        } else {
-            System.out.println("error creating table");
-        }
-    }
-
-    public void insertIntoCaseTable(String timeStamp, String dataValue) {
+    public void insertIntoWorldTable(String timeStamp, String dataValue, String tableDataType) {
 
         if (open()) {
-            String sql = "INSERT INTO " + TABLE_CASES + " VALUES(?,?)";
+            String sqlCode = "INSERT INTO " + tableDataType + " VALUES(?,?)";
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCode)) {
                 preparedStatement.setString(1, timeStamp);
                 preparedStatement.setString(2, dataValue);
                 preparedStatement.executeUpdate();
@@ -162,53 +119,12 @@ public class DataBaseStore {
             }
             close();
         } else {
-            System.out.println("Error Opening");
+            System.out.println("Error");
         }
 
 
     }
 
-    public void insertIntoDeathsTable(String timeStamp, String dataValue) {
-
-        if (open()) {
-            String sql = "INSERT INTO " + TABLE_DEATHS + " VALUES(?,?)";
-
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, timeStamp);
-                preparedStatement.setString(2, dataValue);
-                preparedStatement.executeUpdate();
-
-
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-            close();
-        } else {
-            System.out.println("Error Opening");
-        }
-
-
-    }
-
-    public void insertIntoRecoveredTable(String timeStamp, String dataValue) {
-        if (open()) {
-            String sql = "INSERT INTO " + TABLE_RECOVERED + " VALUES(?,?)";
-
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, timeStamp);
-                preparedStatement.setString(2, dataValue);
-                preparedStatement.executeUpdate();
-
-
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-            close();
-        } else {
-            System.out.println("Error Opening");
-        }
-
-    }
 
     //Country Database Configuration Code Below
     public void createTableCountryData(String tableDataType) {
@@ -217,25 +133,24 @@ public class DataBaseStore {
             try (Statement statement = connection.createStatement()) {
 
                 statement.executeUpdate(tableDataType);
-                System.out.println("Country" + tableDataType + " data added");
             } catch (SQLException e) {
-                System.out.println("Error TABLE Not created ");
+                System.out.println("Error");
                 System.out.println(e.getMessage());
 
 
             }
             close();
         } else {
-            System.out.println("error creating table");
+            System.out.println("Error");
         }
 
     }
     public void insertIntoCountryData(String timeStamp, String dataValue, String tableDataType) {
 
         if (open()) {
-            String sql = "INSERT INTO " + tableDataType + " VALUES(?,?)";
+            String sqlCode = "INSERT INTO " + tableDataType + " VALUES(?,?)";
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCode)) {
                 preparedStatement.setString(1, timeStamp);
                 preparedStatement.setString(2, dataValue);
                 preparedStatement.executeUpdate();
@@ -252,6 +167,50 @@ public class DataBaseStore {
 
     }
     //State coronavirus data below
+
+    public void createStateTable(String tableDataType) {
+
+        if (open()) {
+            try (Statement statement = connection.createStatement()) {
+
+                statement.executeUpdate(tableDataType);
+
+
+            } catch (SQLException e) {
+                System.out.println("Error TABLE Not created ");
+                System.out.println(e.getMessage());
+
+
+            }
+            close();
+        } else {
+            System.out.println("error creating table");
+        }
+
+
+    }
+    public void insertIntoStateData(String timeStamp, String dataValue, String tableDataType) {
+
+        if (open()) {
+            String sqlCode = "INSERT INTO " + tableDataType + " VALUES(?,?)";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sqlCode)) {
+                preparedStatement.setString(1, timeStamp);
+                preparedStatement.setString(2, dataValue);
+                preparedStatement.executeUpdate();
+
+
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            close();
+        } else {
+            System.out.println("Error Opening");
+        }
+
+
+    }
+
 
 
 }

@@ -80,8 +80,8 @@ public class ThreeAtOnce implements Runnable {
 
                                 }
 
-                                dataBaseStore.createTableRecovered();
-                                dataBaseStore.insertIntoRecoveredTable(timestamp.toString(), recoveredData);
+                                dataBaseStore.createWorldTable(DataBaseStore.CREATE_TABLE_RECOVERED);
+                                dataBaseStore.insertIntoWorldTable(timestamp.toString(), recoveredData, DataBaseStore.TABLE_RECOVERED);
 
 
 
@@ -183,8 +183,8 @@ public class ThreeAtOnce implements Runnable {
                                     System.out.println(casesToWrite + " cases");
                                 }
 
-                                dataBaseStore.createTableCases();
-                                dataBaseStore.insertIntoCaseTable(timestampC.toString(), casesData);
+                                dataBaseStore.createWorldTable(DataBaseStore.CREATE_TABLE_CASES);
+                                dataBaseStore.insertIntoWorldTable(timestampC.toString(), casesData, DataBaseStore.TABLE_CASES);
 
                                 caseListConsole.add(casesToWrite);
                                 timestampListCase.add(timestampC);
@@ -287,8 +287,8 @@ public class ThreeAtOnce implements Runnable {
                                     System.out.println(DeathsToWrite + " deaths");
                                 }
 
-                                dataBaseStore.createTableDeaths();
-                                dataBaseStore.insertIntoDeathsTable(timestamp.toString(), deathsValue);
+                                dataBaseStore.createWorldTable(DataBaseStore.CREATE_TABLE_DEATHS);
+                                dataBaseStore.insertIntoWorldTable(timestamp.toString(), deathsValue, DataBaseStore.TABLE_DEATHS);
 
                                 DeathsListConsole.add(DeathsToWrite);
                                 timeStampDeath.add(timestamp);
