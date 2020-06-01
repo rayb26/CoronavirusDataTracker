@@ -25,6 +25,8 @@ public class ThreeAtOnce implements Runnable {
     List<String> DeathsListValue = new ArrayList<>();
     List<String> DeathsListConsole = new ArrayList<>();
     List<Timestamp> timeStampDeath = new ArrayList<>();
+    DataBaseStore dataBaseStore = new DataBaseStore();
+
 
 
 
@@ -70,12 +72,19 @@ public class ThreeAtOnce implements Runnable {
 
 
                                 String RecoveredtoWrite = timestamp + " -> " + values.getElementsByTag("span").first().text();
+                                String recoveredData = values.getElementsByTag("span").first().text();
 
                                 //synchronized not needed, but added as a thread-safe precaution
                                 synchronized (this) {
                                     System.out.println(RecoveredtoWrite + " patients recovered");
 
                                 }
+
+                                dataBaseStore.createTableRecovered();
+                                dataBaseStore.insertIntoRecoveredTable(timestamp.toString(), recoveredData);
+
+
+
                                 recovered.add(RecoveredtoWrite);
                                 timestampList.add(timestamp);
                                 recoveredList.add(values.getElementsByTag("span").first().text());
@@ -165,12 +174,17 @@ public class ThreeAtOnce implements Runnable {
                             } else if (counter == 1) {
                                 Timestamp timestampC = new Timestamp(System.currentTimeMillis());
 
+                                String casesData = values.getElementsByTag("span").first().text();
+
                                 String casesToWrite = timestampC + " -> " + values.getElementsByTag("span").first().text();
 
                                 //synchronized not needed, but added as a thread-safe precaution
                                 synchronized (this){
                                     System.out.println(casesToWrite + " cases");
                                 }
+
+                                dataBaseStore.createTableCases();
+                                dataBaseStore.insertIntoCaseTable(timestampC.toString(), casesData);
 
                                 caseListConsole.add(casesToWrite);
                                 timestampListCase.add(timestampC);
@@ -266,11 +280,15 @@ public class ThreeAtOnce implements Runnable {
 
                                 String DeathsToWrite = timestamp + " -> " + values.getElementsByTag("span").first().text();
 
+                                String deathsValue = values.getElementsByTag("span").first().text();
+
                                 //synchronized not needed, but added as a thread-safe precaution
                                 synchronized (this){
                                     System.out.println(DeathsToWrite + " deaths");
                                 }
 
+                                dataBaseStore.createTableDeaths();
+                                dataBaseStore.insertIntoDeathsTable(timestamp.toString(), deathsValue);
 
                                 DeathsListConsole.add(DeathsToWrite);
                                 timeStampDeath.add(timestamp);
